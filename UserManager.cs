@@ -77,6 +77,7 @@ namespace BenebotV3
             _registeredUsers.Remove(oldName);
             sum.Name = name;
             _registeredUsers.Add(name, sum);
+            FlushUsers();
             return string.Format("{2} => {0} updated to {1}", oldName, name, id);
         }
 

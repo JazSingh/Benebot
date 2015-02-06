@@ -76,13 +76,13 @@ namespace BenebotV3
             var h = string.Empty;
             if (_userManager.GetUser(from) != null && message.Equals("!help"))
             {
-                h = _commands.Aggregate(h, (current1, abstractCommandse) => abstractCommandse.Commands.Where(abstractCommand => abstractCommandse.HasRights(abstractCommand.Value.AuthRank, _userManager.GetUser(@from).Rank)).Aggregate(current1, (current, abstractCommand) => current + (current.Equals(string.Empty) ? abstractCommand.Key : string.Format(", {0}", abstractCommand.Key))));
+                h = _commands.Aggregate(h, (current1, abstractCommandse) => abstractCommandse.Commands.Where(abstractCommand => abstractCommandse.HasRights(abstractCommand.Value.AuthRank, _userManager.GetUser(@from))).Aggregate(current1, (current, abstractCommand) => current + (current.Equals(string.Empty) ? abstractCommand.Key : string.Format(", {0}", abstractCommand.Key))));
                 Connection.SendMessage(h);
                 return;
             }
 
             if (message.Equals("!reload") &&
-                _commands[3].HasRights(_commands[3].Commands["!reload"].AuthRank, _userManager.GetUser(from).Rank))
+                _commands[3].HasRights(_commands[3].Commands["!reload"].AuthRank, _userManager.GetUser(from)))
             {
                 Reload();
                 return;

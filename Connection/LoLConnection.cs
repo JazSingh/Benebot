@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using agsXMPP;
 using agsXMPP.protocol.client;
 using agsXMPP.protocol.x.muc;
@@ -112,7 +113,9 @@ namespace BenebotV3
 
         public void MessageReceived(string from, string message)
         {
-            _parent.MessageReceived(from, message);
+            Action a = () => _parent.MessageReceived(from, message);
+            Task t = new Task(a);
+            t.Start();
         }
 
         public void PresenceReceived(string from, int status)

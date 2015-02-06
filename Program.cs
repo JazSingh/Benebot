@@ -9,7 +9,20 @@ namespace BenebotV3
             var benebot = new Benebot();
             benebot.Connection = new LoLConnection(benebot);
             benebot.Start();
-            Console.ReadLine();
+            while (true)
+            {
+                var s = Console.ReadLine();
+                switch (s)
+                {
+                    case "disconnect":
+                        benebot.Connection.Disconnect();
+                        break;
+                    case "connect": benebot.Start();
+                        break;
+                    default: benebot.SendMessage(s);
+                        break;
+                }
+            }
         }
     }
 }
