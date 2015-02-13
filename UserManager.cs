@@ -115,14 +115,20 @@ namespace BenebotV3
         public void JoinedRoom(string name)
         {
             if (InRoom.Contains(name)) return;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("{0} joined", name);
+            Console.ForegroundColor = ConsoleColor.White;
             InRoom.Add(name);
         }
 
         public void LeftRoom(string name)
         {
             if (InRoom.Remove(name))
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("{0} left", name);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         public string SetRank(string user, string s)
